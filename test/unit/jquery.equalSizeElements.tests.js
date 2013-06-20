@@ -83,5 +83,6 @@
 
     // Remove test content
     $('div.content').hide();
+})();
 
-});
+
