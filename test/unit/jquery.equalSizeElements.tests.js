@@ -1,27 +1,33 @@
-$(function () {
+(function() {
+
+    'use strict';
 
     // Create three different size columns to test with
     $('<div/>', {
-            'class' : 'content one'
+        'class' : 'content one'
     })
-    .html('<p>one</p><p>one</p><p>one</p><p>one</p><p>one</p>')
-    .appendTo('body');
+        .html('<p>one</p><p>one</p><p>one</p><p>one</p><p>one</p>')
+        .appendTo('body');
 
     $('<div/>', {
         'class' : 'content two'
     })
-    .html('<p>two two two</p><p>two</p><p>two two two</p>')
-    .appendTo('body');
+        .html('<p>two two two</p><p>two</p><p>two two two</p>')
+        .appendTo('body');
 
     $('<div/>', {
         'class' : 'content three'
     })
-    .html('<p>three</p>')
-    .appendTo('body');
+        .html('<p>three</p>')
+        .appendTo('body');
 
     /**
      * Unit tests
      */
+
+    // Prevent any animation from disruptin the tests
+    jQuery.fx.off = true;
+
     module('equalSizeElements');
     test( "The plugin should exist and allow chaining", function() {
         ok( $('div.content').equalSizeElements() , "Plugin exists" );

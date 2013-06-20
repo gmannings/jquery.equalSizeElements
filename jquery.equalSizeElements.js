@@ -2,6 +2,8 @@
     /**
      * Plugin that calculates the largest width or height element from a supplied group and resizes each element based on the largest
      *
+     * Uses ems for height sizing to ensure accessibility is kept
+     *
      * @author Gavin Mannings
      * @param {String} [dimension="height"] Switch the plugin to measure height or width.
      */
@@ -23,13 +25,19 @@
             throw "equalSizeElements: Incorrect 'dimension' parameter provided, must be a string."
         }
 
-        // Make all elements in group the same height as largest element
+        // Make all elements in stack the same size as largest element
         return this
             .each(function() {
 
-                if ($(this).height() > intLargestSize) {
-                    // Save the height
-                    intLargestSize = $(this).height();
+                var dimension = $(this)
+                                    .css(strDimension, 'auto')  // reset dimension from previously applied euqal size
+                                    [strDimension]();           // find value
+
+                // If current largest in stack
+                if (dimension > intLargestSize) {
+
+                    // Save the size
+                    intLargestSize = dimension;
 
                     // Apply a unique class to the largest element
                     $(instance).removeClass('resizeLargestItem');
@@ -47,7 +55,8 @@
                         String(intLargestSize / sizeOfEm.height) + 'em' :
                         intLargestSize + 'px';
 
-                // Create the animation object to pass to jQuery
+                // Create the animation object to pass to jQuery, this creates:
+                // {height: 8em} or {width: 200px}
                 animationObj[strDimension] =  String(newSize);
 
                 // Animate and if we need ems as the final measurement, apply
