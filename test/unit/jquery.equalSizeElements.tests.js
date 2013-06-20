@@ -46,7 +46,9 @@
         equal( $('div.one').height(),  $('div.three').height() );
     });
     test( "All elements should be equal height if top and bottom padding exists" , function() {
+
         $('div.content').css('padding-bottom', 15).equalSizeElements();
+
         equal( $('div.one').height(),  $('div.two').height() );
         equal( $('div.two').height(),  $('div.three').height() );
         equal( $('div.one').height(),  $('div.three').height() );
@@ -57,13 +59,13 @@
         equal( $('div.two').width(),  $('div.three').width() );
         equal( $('div.one').width(),  $('div.three').width() );
     });
-    test( "All elements should be equal height if left padding exists" , function() {
+    test( "All elements should be equal width if left padding exists" , function() {
         $('div.content').css('padding-left', 15).equalSizeElements('width');
         equal( $('div.one').width(),  $('div.two').width() );
         equal( $('div.two').width(),  $('div.three').width() );
         equal( $('div.one').width(),  $('div.three').width() );
     });
-    test( "All elements should be equal height if left and right padding exists" , function() {
+    test( "All elements should be equal width if left and right padding exists" , function() {
         $('div.content').css('padding-right', 15).equalSizeElements('width');
         equal( $('div.one').width(),  $('div.two').width() );
         equal( $('div.two').width(),  $('div.three').width() );
